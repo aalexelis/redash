@@ -14,7 +14,7 @@ FROM redash/base:debian
 ARG skip_ds_deps
 
 # Upgrade pip because it fails in the process
-pip install --upgrade pip
+RUN pip install --upgrade pip
 
 # We first copy only the requirements file, to avoid rebuilding on every file
 # change.
