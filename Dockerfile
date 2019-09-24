@@ -16,6 +16,9 @@ ARG skip_ds_deps
 # Upgrade pip because it fails in the process
 RUN pip install --upgrade pip
 
+#Hack from https://github.com/DefectDojo/django-DefectDojo/issues/407
+RUN sed '/st_mysql_options options;/a unsigned int reconnect;' /usr/include/mysql/mysql.h -i.bkp
+
 # We first copy only the requirements file, to avoid rebuilding on every file
 # change.
 COPY requirements.txt requirements_bundles.txt requirements_dev.txt requirements_all_ds.txt ./
